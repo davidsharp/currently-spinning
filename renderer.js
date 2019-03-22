@@ -2,6 +2,8 @@ var spotify = require('spotify-node-applescript');
  
 setInterval(()=>spotify.getTrack(handleTrack),500)
 
+var currentImgUrl='';
+
 function handleTrack(err, track){
     /*
     track = {
@@ -20,6 +22,33 @@ function handleTrack(err, track){
         spotify_url: 'spotify:track:3AhXZa8sUQht0UEdBJgpGc' }
     }
     */
-  document.body.innerHTML = `<h1>${track.artist} – ${track.name}</h1><img src="${track.artwork_url}"/>`
-  //JSON.stringify(track)
+  document.getElementsByTagName('h1')[0].innerText=`${track.artist} – ${track.name}`
+
+  startDownload(track.artwork_url)
 }
+
+function startDownload(url) {
+  if(url===currentImgUrl){return;}
+  currentImgUrl = url;
+  let imageURL = url;
+ 
+  downloadedImg = document.getElementsByTagName('img')[0]
+  downloadedImg.crossOrigin = "Anonymous";
+  downloadedImg.addEventListener("load", imageReceived, false);
+  downloadedImg.src = imageURL;
+}
+
+function imageReceived() {
+  let canvas = document.createElement("canvas");
+  let context = canvas.getContext("2d");
+
+  canvas.width = downloadedImg.width;
+  canvas.height = downloadedImg.height;
+
+  context.drawImage(downloadedImg, 0, 0);
+  //document.getElementsByTagName('title')[0].innerText = context.getImageData(100, 100, 1, 1).data;
+  let d = context.getImageData(100, 100, 1, 1).data;
+  document.getElementsByTagName('h1')[0].style.color = `rgb(${d[0]},${d[1]},${d[2]})`;
+  document.getElementsByTagName('h1')[0].style.backgroundColor = `rgba(0,0,0,.7)`;
+}
+
