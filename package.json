@@ -1,0 +1,18 @@
+{
+  "name": "private-show-ban",
+  "productName": "private-show-ban",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "david",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "spotify-node-applescript": "*"
+  },
+  "devDependencies": {
+    "electron": "2.0.16"
+  }
+}
