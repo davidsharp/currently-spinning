@@ -10,6 +10,14 @@
         -webkit-app-region: drag;
       }
       #info {
+        width:100%;
+        position:fixed;
+        bottom:0;
+        left:0;
+        z-index:2;
+        padding:1em;
+        padding-bottom:.2em;
+
         transition-property: opacity;
         transition-duration: .5s;
         transition-timing-function: ease;
@@ -17,14 +25,22 @@
       body:hover #info{
         opacity: 0;
       }
+      #cover {
+        position:fixed;
+        top:0;
+        left:0;
+        height:100vmax;
+        width:100vmax;
+        z-index:1;
+      }
     </style>
   </head>
-  <body style="-webkit-app-region: drag">
-    <section id="info" style="width:100%;position:fixed;bottom:0;left:0;z-index:2;padding:1em;padding-bottom:.2em;">
+  <body>
+    <section id="info">
       <p id="artist">gimme a sec..</p>
       <p id="song"></p>
     </section>
-    <img id="cover" style="position:fixed;top:0;left:0;height:100vmax;width:100vmax;z-index:1;"/>
+    <img id="cover"/>
     
     <script>
       // You can also require other files to run in this process
