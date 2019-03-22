@@ -53,6 +53,7 @@ function imageReceived() {
   let color = convert.rgb.hsl(d[0],d[1],d[2])
   const fgCol = `hsl(${color[0]},${color[1]}%,${color[2]}%)`
   const bgCol = `hsl(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%)`
+  const bgColTr = `hsla(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%,0)`
   document.getElementById('info').style.color = fgCol;
-  document.getElementById('info').style.backgroundColor = bgCol;
+  document.getElementById('info').style.background = `linear-gradient(0deg,${bgCol},85%,${bgColTr})`;
 }
