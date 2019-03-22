@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <title>🎶</title>
     <style>
-      * {font-family: sans-serif;}
+      * {
+        font-family: sans-serif;
+        -webkit-user-select: none;
+        -webkit-app-region: drag;
+      }
     </style>
   </head>
-  <body>
+  <body style="-webkit-app-region: drag">
     <section id="info" style="width:100%;position:fixed;bottom:0;left:0;z-index:2;padding:1em;padding-bottom:.2em;">
       <p id="artist">gimme a sec..</p>
       <p id="song"></p>
