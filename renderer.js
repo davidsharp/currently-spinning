@@ -1,9 +1,9 @@
 const spotify = require('spotify-node-applescript');
 const convert = require('color-convert');
  
-setInterval(()=>spotify.getTrack(handleTrack),500)
+setInterval(()=>spotify.getTrack(handleTrack),2500)
 
-var currentImgUrl='';
+let currentImgUrl='';
 
 function handleTrack(err, track){
     /*
@@ -33,12 +33,11 @@ function handleTrack(err, track){
 
 function startDownload(url) {
   if(url===currentImgUrl){return;}
-  currentImgUrl = url;
  
   downloadedImg = document.getElementById('cover')
   downloadedImg.crossOrigin = "Anonymous";
   downloadedImg.addEventListener("load", imageReceived, false);
-  downloadedImg.src = url;
+  downloadedImg.src = currentImgUrl = url;
 }
 
 function imageReceived() {
@@ -57,4 +56,3 @@ function imageReceived() {
   document.getElementById('info').style.color = fgCol;
   document.getElementById('info').style.backgroundColor = bgCol;
 }
-
