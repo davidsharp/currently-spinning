@@ -1,7 +1,7 @@
 {
-  "name": "private-show-ban",
-  "productName": "private-show-ban",
-  "description": "My Electron application description",
+  "name": "currently-spinning",
+  "productName": "currently-spinning",
+  "description": "a little widget for viewing Now Playing on Spotify",
   "keywords": [],
   "main": "./main.js",
   "version": "1.0.0",
