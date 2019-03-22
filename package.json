@@ -10,6 +10,7 @@
     "start": "electron ."
   },
   "dependencies": {
+    "color-convert": "^2.0.0",
     "spotify-node-applescript": "*"
   },
   "devDependencies": {

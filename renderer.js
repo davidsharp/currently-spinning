@@ -1,4 +1,5 @@
 var spotify = require('spotify-node-applescript');
+var convert = require('color-convert');
  
 setInterval(()=>spotify.getTrack(handleTrack),500)
 
@@ -46,9 +47,10 @@ function imageReceived() {
   canvas.height = downloadedImg.height;
 
   context.drawImage(downloadedImg, 0, 0);
-  //document.getElementsByTagName('title')[0].innerText = context.getImageData(100, 100, 1, 1).data;
-  let d = context.getImageData(100, 100, 1, 1).data;
-  document.getElementsByTagName('h1')[0].style.color = `rgb(${d[0]},${d[1]},${d[2]})`;
-  document.getElementsByTagName('h1')[0].style.backgroundColor = `rgba(0,0,0,.7)`;
+  let data = context.getImageData(0, 0, downloadedImg.width, downloadedImg.height).data;
+  let d=data.reduce((a,c,i)=>{a[i%4]+=c;return a},[0,0,0,0]).map(c=>(Math.round(c/(data.length/4))))
+  let color = convert.rgb.hsl(d[0],d[1],d[2])
+  document.getElementsByTagName('h1')[0].style.color = `hsl(${color[0]},${color[1]}%,${color[2]}%)`; //`rgb(${d[0]},${d[1]},${d[2]})`;
+  document.getElementsByTagName('h1')[0].style.backgroundColor = `hsl(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%)`; //`rgba(${d[2]},${d[1]},${d[0]},.5)`;
 }
 
