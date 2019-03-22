@@ -28,7 +28,7 @@ function handleTrack(err, track){
 
   startDownload(track.artwork_url)
 
-  console.log('current track info ::: ',track)
+  //console.log('current track info ::: ',track)
 }
 
 function startDownload(url) {
