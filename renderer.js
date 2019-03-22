@@ -1,5 +1,5 @@
-var spotify = require('spotify-node-applescript');
-var convert = require('color-convert');
+const spotify = require('spotify-node-applescript');
+const convert = require('color-convert');
  
 setInterval(()=>spotify.getTrack(handleTrack),500)
 
@@ -23,7 +23,8 @@ function handleTrack(err, track){
         spotify_url: 'spotify:track:3AhXZa8sUQht0UEdBJgpGc' }
     }
     */
-  document.getElementsByTagName('h1')[0].innerText=`${track.artist} – ${track.name}`
+  document.getElementById('artist').innerText=track.artist
+  document.getElementById('song').innerText=track.name
 
   startDownload(track.artwork_url)
 }
@@ -31,12 +32,11 @@ function handleTrack(err, track){
 function startDownload(url) {
   if(url===currentImgUrl){return;}
   currentImgUrl = url;
-  let imageURL = url;
  
   downloadedImg = document.getElementsByTagName('img')[0]
   downloadedImg.crossOrigin = "Anonymous";
   downloadedImg.addEventListener("load", imageReceived, false);
-  downloadedImg.src = imageURL;
+  downloadedImg.src = url;
 }
 
 function imageReceived() {
@@ -50,7 +50,11 @@ function imageReceived() {
   let data = context.getImageData(0, 0, downloadedImg.width, downloadedImg.height).data;
   let d=data.reduce((a,c,i)=>{a[i%4]+=c;return a},[0,0,0,0]).map(c=>(Math.round(c/(data.length/4))))
   let color = convert.rgb.hsl(d[0],d[1],d[2])
-  document.getElementsByTagName('h1')[0].style.color = `hsl(${color[0]},${color[1]}%,${color[2]}%)`; //`rgb(${d[0]},${d[1]},${d[2]})`;
-  document.getElementsByTagName('h1')[0].style.backgroundColor = `hsl(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%)`; //`rgba(${d[2]},${d[1]},${d[0]},.5)`;
+  const fgCol = `hsl(${color[0]},${color[1]}%,${color[2]}%)`
+  const bgCol = `hsl(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%)`
+  document.getElementById('info').style.color = fgCol;
+  document.getElementById('info').style.backgroundColor = bgCol;
+  document.getElementById('artist').style.backgroundColor = bgCol;
+  document.getElementById('song').style.backgroundColor = bgCol;
 }
 
