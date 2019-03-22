@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8">
     <title>🎶</title>
+    <style>
+      * {font-family: sans-serif;}
+    </style>
   </head>
   <body>
-    <div id="info">
-      <h1 id="artist" style="position:fixed;top:0;left:0;z-index:2;">gimme a sec..</h1>
-      <h1 id="song" style="position:fixed;top:1.5em;left:0;z-index:2;"></h1>
-    </div>
-    <img style="position:fixed;top:0;left:0;height:100vmax;width:100vmax;z-index:1;"/>
+    <section id="info" style="position:fixed;top:0;left:0;z-index:2;padding:1em;">
+      <p id="artist">gimme a sec..</p>
+      <p id="song"></p>
+    </section>
+    <img id="cover" style="position:fixed;top:0;left:0;height:100vmax;width:100vmax;z-index:1;"/>
     
     <script>
       // You can also require other files to run in this process

@@ -27,13 +27,15 @@ function handleTrack(err, track){
   document.getElementById('song').innerText=track.name
 
   startDownload(track.artwork_url)
+
+  console.log('current track info ::: ',track)
 }
 
 function startDownload(url) {
   if(url===currentImgUrl){return;}
   currentImgUrl = url;
  
-  downloadedImg = document.getElementsByTagName('img')[0]
+  downloadedImg = document.getElementById('cover')
   downloadedImg.crossOrigin = "Anonymous";
   downloadedImg.addEventListener("load", imageReceived, false);
   downloadedImg.src = url;
@@ -54,7 +56,5 @@ function imageReceived() {
   const bgCol = `hsl(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%)`
   document.getElementById('info').style.color = fgCol;
   document.getElementById('info').style.backgroundColor = bgCol;
-  document.getElementById('artist').style.backgroundColor = bgCol;
-  document.getElementById('song').style.backgroundColor = bgCol;
 }
 
