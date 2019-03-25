@@ -33,6 +33,29 @@
         width:100vmax;
         z-index:1;
       }
+      .control {
+        -webkit-app-region: no-drag;
+        position: fixed;
+        z-index:2;
+        /*border: dashed;*/
+      }
+      #play {
+        top:25vmax;
+        left:25vmax;
+        height:50vmax;
+        width:50vmax;
+      }
+      #left, #right {
+        top:25vmax;
+        height:50vmax;
+        width:25vmax;
+      }
+      #left {
+        left:0vmax;
+      }
+      #right {
+        left:75vmax;
+      }
     </style>
   </head>
   <body>
@@ -41,6 +64,9 @@
       <p id="song"></p>
     </section>
     <img id="cover"/>
+    <div id="left" class="control"></div>
+    <div id="play" class="control"></div>
+    <div id="right" class="control"></div>
     
     <script>
       // You can also require other files to run in this process

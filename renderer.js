@@ -3,6 +3,10 @@ const convert = require('color-convert');
  
 setInterval(()=>spotify.getTrack(handleTrack),2500)
 
+document.getElementById('play').onclick=()=>spotify.playPause();
+document.getElementById('left').onclick=()=>spotify.previous();
+document.getElementById('right').onclick=()=>spotify.next();
+
 let currentImgUrl='';
 
 function handleTrack(err, track){
