@@ -46,11 +46,8 @@ function startDownload(url) {
 }
 
 function imageReceived() {
-  let canvas = document.createElement("canvas");
+  let canvas = new OffscreenCanvas(downloadedImg.naturalWidth, downloadedImg.naturalHeight);
   let context = canvas.getContext("2d");
-
-  canvas.width = downloadedImg.naturalWidth;
-  canvas.height = downloadedImg.naturalHeight;
 
   // get colours for text underlay
   context.drawImage(downloadedImg, 0, 0);
@@ -63,7 +60,7 @@ function imageReceived() {
   document.getElementById('info').style.color = fgCol;
   document.getElementById('info').style.background = `linear-gradient(0deg,${bgCol},85%,${bgColTr})`;
 
-  // create new canvas for circular icon
+  // create new canvas for circular icon (OffscreenCanvas has no `toDataURL`)
   canvas = document.createElement("canvas");
   context = canvas.getContext("2d");
   canvas.width = downloadedImg.naturalWidth;
