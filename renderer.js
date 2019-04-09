@@ -1,3 +1,4 @@
+const { ipcRenderer } = require('electron');
 const spotify = require('spotify-node-applescript');
 const convert = require('color-convert');
  
@@ -60,4 +61,6 @@ function imageReceived() {
   const bgColTr = `hsla(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%,0)`
   document.getElementById('info').style.color = fgCol;
   document.getElementById('info').style.background = `linear-gradient(0deg,${bgCol},85%,${bgColTr})`;
+
+  ipcRenderer.send('coverURI', canvas.toDataURL())
 }
