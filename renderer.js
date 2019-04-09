@@ -54,9 +54,9 @@ function imageReceived() {
   let data = context.getImageData(0, 0, canvas.width, canvas.height).data;
   let d=data.reduce((a,c,i)=>{a[i%4]+=c;return a},[0,0,0,0]).map(c=>(Math.round(c/(data.length/4))))
   let color = convert.rgb.hsl(d[0],d[1],d[2])
-  const fgCol = `hsl(${color[0]},${color[1]}%,${color[2]}%)`
-  const bgCol = `hsl(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%)`
-  const bgColTr = `hsla(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%,0)`
+  const bgCol = `hsl(${color[0]},${color[1]}%,${color[2]}%)`
+  const bgColTr = `hsla(${color[0]},${color[1]}%,${color[2]}%,0)`
+  const fgCol = `hsl(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%)`
   document.getElementById('info').style.color = fgCol;
   document.getElementById('info').style.background = `linear-gradient(0deg,${bgCol},85%,${bgColTr})`;
 
