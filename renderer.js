@@ -49,8 +49,8 @@ function imageReceived() {
   let canvas = document.createElement("canvas");
   let context = canvas.getContext("2d");
 
-  canvas.width = 640;
-  canvas.height = 640;
+  canvas.width = downloadedImg.naturalWidth;
+  canvas.height = downloadedImg.naturalHeight;
 
   context.drawImage(downloadedImg, 0, 0);
   let data = context.getImageData(0, 0, canvas.width, canvas.height).data;
