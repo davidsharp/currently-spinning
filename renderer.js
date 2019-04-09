@@ -49,11 +49,11 @@ function imageReceived() {
   let canvas = document.createElement("canvas");
   let context = canvas.getContext("2d");
 
-  canvas.width = downloadedImg.width;
-  canvas.height = downloadedImg.height;
+  canvas.width = 640;
+  canvas.height = 640;
 
   context.drawImage(downloadedImg, 0, 0);
-  let data = context.getImageData(0, 0, downloadedImg.width, downloadedImg.height).data;
+  let data = context.getImageData(0, 0, canvas.width, canvas.height).data;
   let d=data.reduce((a,c,i)=>{a[i%4]+=c;return a},[0,0,0,0]).map(c=>(Math.round(c/(data.length/4))))
   let color = convert.rgb.hsl(d[0],d[1],d[2])
   const fgCol = `hsl(${color[0]},${color[1]}%,${color[2]}%)`
