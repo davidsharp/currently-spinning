@@ -21,9 +21,22 @@
         transition-property: opacity;
         transition-duration: .5s;
         transition-timing-function: ease;
+
+        max-height: 50vh;
       }
       body:hover #info{
         opacity: 0;
+      }
+      #info > p {
+        margin: 1vh;
+        padding: 0;
+      }
+      #song {
+        font-size: 7vh;
+      }
+      #artist {
+        font-size: 6vh;
+        margin-bottom: 2vh;
       }
       #cover {
         position:fixed;
@@ -60,8 +73,8 @@
   </head>
   <body>
     <section id="info">
-      <p id="artist">gimme a sec..</p>
       <p id="song"></p>
+      <p id="artist">gimme a sec..</p>
     </section>
     <img id="cover"/>
     <div id="left" class="control"></div>
