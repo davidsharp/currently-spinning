@@ -52,6 +52,7 @@ function imageReceived() {
   canvas.width = downloadedImg.naturalWidth;
   canvas.height = downloadedImg.naturalHeight;
 
+  // get colours for text underlay
   context.drawImage(downloadedImg, 0, 0);
   let data = context.getImageData(0, 0, canvas.width, canvas.height).data;
   let d=data.reduce((a,c,i)=>{a[i%4]+=c;return a},[0,0,0,0]).map(c=>(Math.round(c/(data.length/4))))
@@ -61,6 +62,16 @@ function imageReceived() {
   const bgColTr = `hsla(${(180+color[0])/360},${color[1]}%,${(color[2]+50)%100}%,0)`
   document.getElementById('info').style.color = fgCol;
   document.getElementById('info').style.background = `linear-gradient(0deg,${bgCol},85%,${bgColTr})`;
+
+  // create new canvas for circular icon
+  canvas = document.createElement("canvas");
+  context = canvas.getContext("2d");
+  canvas.width = downloadedImg.naturalWidth;
+  canvas.height = downloadedImg.naturalHeight;
+  context.beginPath();
+  context.arc(canvas.width/2,canvas.height/2,canvas.width/2,0,Math.PI*2, true)
+  context.clip();
+  context.drawImage(downloadedImg, 0, 0);
 
   ipcRenderer.send('coverURI', canvas.toDataURL())
 }
