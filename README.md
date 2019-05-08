@@ -4,8 +4,8 @@ A (macOS only) widget for presenting the Now Playing Spotify track, with a few c
 ### How to "install"
 
 ```
-mkdir currently-spinning; cd currently-spinning
 git clone https://github.com/davidsharp/currently-spinning.git
+cd currently-spinning
 yarn # `npm install` also works
 ```
 
