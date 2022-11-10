@@ -14,6 +14,6 @@
     "spotify-node-applescript": "*"
   },
   "devDependencies": {
-    "electron": "9"
+    "electron": "18"
   }
 }
